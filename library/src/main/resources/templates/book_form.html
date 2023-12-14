@@ -33,6 +33,13 @@
                         <option th:each="tmpauthor : ${authors}"
                                 th:value="${tmpauthor.author_id}"
                                 th:text="${tmpauthor.authorName}"></option>
+                        <span th:if = "${book.author}">
+                            <script th:inline="javascript">
+                                var userid = [[${book.author.author_id}]];
+                                console.log(userid);
+                                document.getElementById('author.author_id').value = userid;
+                            </script>
+                        </span>
                     </select>
                     <label for="author.author_id">Author</label>
                     <p th:if="${#fields.hasErrors('author')}" th:class="error">Please choose the author</p>
@@ -44,6 +51,13 @@
                         <option th:each="category : ${categorys}"
                                 th:value="${category.category_id}"
                                 th:text="${category.categoryName}"></option>
+                        <span th:if = "${book.category}">
+                            <script th:inline="javascript">
+                                var categoryid = [[${book.category.category_id}]];
+                                console.log(categoryid);
+                                document.getElementById('category.category_id').value = categoryid;
+                            </script>
+                        </span>
                     </select>
                     <label for="category.category_id">Category</label>
                     <p th:if="${#fields.hasErrors('category')}" th:class="error">Please choose the category</p>
@@ -64,5 +78,6 @@
 
         <div th:insert="~{home :: footer}"></div>
     </div>
+
 </body>
 </html>
