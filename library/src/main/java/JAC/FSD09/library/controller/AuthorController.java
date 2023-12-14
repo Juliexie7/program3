@@ -7,6 +7,7 @@ import JAC.FSD09.library.mapper.AuthorMapperHelper;
 import JAC.FSD09.library.service.AuthorService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -75,9 +76,17 @@ public class AuthorController {
     }
 
     @GetMapping("/delete")
-    public String delete(@RequestParam("authorId") Long theId){
-        service.deleteAuthorById(theId);
-        return "redirect:/author/list";
+    public String delete(@RequestParam("authorId") Long theId, Model theModel){
+        try{
+            service.deleteAuthorById(theId);
+            return "redirect:/author/list";
+        } catch (DataIntegrityViolationException ex) {
+            theModel.addAttribute("error", "Cannot delete the author due to existing dependencies.");
+            List<Author> authorList = service.getAllAuthors();
+            List<AuthorDTO> authorDTOList = mapperHelper.convertAuthorListToAuthorDTOList(authorList);
+            theModel.addAttribute("authors", authorDTOList);
+            return "list_author";
+        }
     }
 
 }
