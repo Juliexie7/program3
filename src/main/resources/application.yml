@@ -1,5 +1,6 @@
 spring:
   datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://libraryproj.mysql.database.azure.com:3306/library1?useSSL=true
     username: libraryadmin
     password: password@123
