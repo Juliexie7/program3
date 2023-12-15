@@ -1,6 +1,6 @@
 spring:
   datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
+    #driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://libraryproj.mysql.database.azure.com:3306/library1?useSSL=true
     username: libraryadmin
     password: password@123
@@ -8,4 +8,4 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-      dialect: org.hibernate.dialect.MySQL8Dialect
+      #dialect: org.hibernate.dialect.MySQL8Dialect
