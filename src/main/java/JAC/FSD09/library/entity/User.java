@@ -6,7 +6,7 @@ import lombok.*;
 import java.util.Collection;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
